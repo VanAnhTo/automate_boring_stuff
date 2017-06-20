@@ -26,7 +26,7 @@ for folder in dirs:
     for file in files:
         print(file)
         file_name = path + "/" + folder + "/" + file
-        test_file = ocr_space_file(file_name, language = folder)
+        test_file = ocr_space_file(file_name, overlay = True, language = folder)
         json_obj = json.loads(test_file)
         print(json_obj)
 
