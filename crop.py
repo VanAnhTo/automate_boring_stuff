@@ -12,6 +12,11 @@ def new_file_name():
     new_file_name = now.strftime("%Y%m%d_%H%M%S%f"+ ".png")
     return new_file_name
 
+def save_file(str):
+    new_file = cropped +"/" + new_file_name()
+    cv2.imwrite(new_file, str)
+    return
+
 for im in dirs:
     img = path + "/" + im
     img = cv2.imread(img)
@@ -25,25 +30,22 @@ for im in dirs:
 
 
     title = img[0:800, 0:width]
-    cv2.imwrite(cropped +"/" + new_file_name(),title)
-    
+    save_file(title)
 
     rate = height//5
 
     menu = img[height-rate:height, 0:width]
-
-    cv2.imwrite(cropped +"/" + new_file_name(),menu)
+    save_file(menu)
 
     content = img[rate:height -rate , 0:width]
 
     haft = width//2
 
     haft_content_left = img[rate:height - rate, 0 : haft ]
-    cv2.imwrite(cropped +"/" + new_file_name(),haft_content_left)
+    save_file(haft_content_left)
 
     haft_content_right = img[rate:height - rate, haft : width ]
-    cv2.imwrite(cropped +"/" + new_file_name(),haft_content_right)
-
+    save_file(haft_content_right)
 
     '''title_gray = cv2.cvtColor(title, cv2.COLOR_BGR2GRAY)
     menu_gray = cv2.cvtColor(menu, cv2.COLOR_BGR2GRAY)'
@@ -51,5 +53,7 @@ for im in dirs:
     #cv2.imshow("cropped", menu_gray)
     cv2.waitKey(0)
     cv2.destroyAllWindows()'''
+
+
 
 
