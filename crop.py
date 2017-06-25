@@ -3,7 +3,7 @@ import os
 import datetime
 import shutil
 
-path = "input_crop"
+path = "screen_capture"
 dirs = os.listdir( path )
 cropped = "backup_cropped"
 
@@ -17,35 +17,58 @@ def save_file(str):
     cv2.imwrite(new_file, str)
     return
 
-for im in dirs:
-    img = path + "/" + im
-    img = cv2.imread(img)
-    #cv2.imshow("cropped", img)
+for image_name in dirs:
+    img_path = path + "/" + image_name
+    img = cv2.imread(img_path)
+    print(image_name)
 
-    # Crop from x, y, w, h -> 100, 200, 300, 400
-    # NOTE: its img[y: y + h, x: x + w] and *not* img[x: x + w, y: y + h]
+    image_type = image_name.split("-",1)[1] 
+    print(image_type)
+
 
     height, width, channels = img.shape
     print (height, width, channels)
-
-
-    title = img[0:800, 0:width]
-    save_file(title)
-
     rate = height//5
 
-    menu = img[height-rate:height, 0:width]
-    save_file(menu)
+    if (image_type == 'popup.png'): 
 
-    content = img[rate:height -rate , 0:width]
+        popup = img[height//5:(4*height)//5 , width//6: (5*width)//6]
+        save_file(popup)
+            
+        popup_title = img[450: 770 , width//6: (5*width)//6]
+        save_file(popup_title)
 
-    haft = width//2
+        popup_content = img[770:1560 , width//6: (5*width)//6]
+        save_file(popup_content)
 
-    haft_content_left = img[rate:height - rate, 0 : haft ]
-    save_file(haft_content_left)
+        popup_button = img[1560:1990 , width//6: (5*width)//6]
+        save_file(popup_button)
 
-    haft_content_right = img[rate:height - rate, haft : width ]
-    save_file(haft_content_right)
+    if (image_type == 'line.png'):
+        line3 = img[(3*height)//7:(4*height)//7, 0: width]
+        save_file(line3)
+            
+        line4 = img[(4*height)//7:(5*height)//7, 0: width]
+        save_file(line4)
+
+        line5 = img[(5*height)//7:(6*height)//7 , 0: width]
+        save_file(line5)
+
+        line6 = img[(6*height)//7:height , 0: width]
+        save_file(line6)
+
+    if (image_type == 'divide.png'):
+        
+        content = img[rate:height -rate , 0:width]
+
+        haft = 2* width//5
+
+        haft_content_left = img[rate : height - rate, 0 : haft ]
+        save_file(haft_content_left)
+
+        haft_content_right = img[rate:height - rate, haft : width ]
+        save_file(haft_content_right)
+    
 
     '''title_gray = cv2.cvtColor(title, cv2.COLOR_BGR2GRAY)
     menu_gray = cv2.cvtColor(menu, cv2.COLOR_BGR2GRAY)'
