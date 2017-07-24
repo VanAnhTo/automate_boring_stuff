@@ -37,7 +37,7 @@ while True:
 
         now = datetime.datetime.now()
 
-        img_name = now.strftime(path +"/" + "%Y%m%d-%H%M%S-" +row+".png")
+        img_name = now.strftime(path +"/" + "%Y%m%d_%H%M%S_" +row+".png")
 
         cv2.imwrite(img_name, frame)   
         print("{} written!".format(img_name))

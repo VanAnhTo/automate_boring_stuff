@@ -22,7 +22,12 @@ for image_name in dirs:
     img = cv2.imread(img_path)
     print(image_name)
 
-    image_type = image_name.split("-",1)[1] 
+    temp = image_name.split("_")
+
+    image_type = temp[len(temp)-1]
+    
+    image_type = os.path.splitext(image_type)[0]
+    
     print(image_type)
 
 
@@ -30,7 +35,7 @@ for image_name in dirs:
     print (height, width, channels)
     rate = height//5
 
-    if (image_type == 'popup.png'): 
+    if (image_type == 'popup'): 
 
         popup = img[height//5:(4*height)//5 , width//6: (5*width)//6]
         save_file(popup)
@@ -44,7 +49,7 @@ for image_name in dirs:
         popup_button = img[1560:1990 , width//6: (5*width)//6]
         save_file(popup_button)
 
-    if (image_type == 'line.png'):
+    if (image_type == 'line'):
         line3 = img[(3*height)//7:(4*height)//7, 0: width]
         save_file(line3)
             
@@ -57,7 +62,7 @@ for image_name in dirs:
         line6 = img[(6*height)//7:height , 0: width]
         save_file(line6)
 
-    if (image_type == 'divide.png'):
+    if (image_type == 'divide'):
         
         content = img[rate:height -rate , 0:width]
 
