@@ -40,13 +40,13 @@ for image_name in dirs:
         popup = img[height//5:(4*height)//5 , width//6: (5*width)//6]
         save_file(popup)
             
-        popup_title = img[450: 770 , width//6: (5*width)//6]
+        popup_title = img[height//6: height//3 , width//6: (5*width)//6]
         save_file(popup_title)
 
-        popup_content = img[770:1560 , width//6: (5*width)//6]
+        popup_content = img[height//3:(4*height)//6 , width//6: (5*width)//6]
         save_file(popup_content)
 
-        popup_button = img[1560:1990 , width//6: (5*width)//6]
+        popup_button = img[(4*height)//6:(5*height)//6 , width//6: (5*width)//6]
         save_file(popup_button)
 
     if (image_type == 'line'):

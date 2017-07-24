@@ -37,7 +37,11 @@ while True:
 
         now = datetime.datetime.now()
 
+<<<<<<< HEAD:2.py
         img_name = now.strftime(path +"/" + "%Y%m%d_%H%M%S_" +row+".png")
+=======
+        img_name = now.strftime(path +"/" + "%Y%m%d_%H%M%S-" +row+".png")
+>>>>>>> origin/master:captureByImageType.py
 
         cv2.imwrite(img_name, frame)   
         print("{} written!".format(img_name))
